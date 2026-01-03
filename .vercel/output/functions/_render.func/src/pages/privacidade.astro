@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("views", "privacidade");
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout entry={entry}>
+  <div class="container mx-auto px-6 py-12 prose max-w-3xl">
+    <Content />
+  </div>
+</BaseLayout>

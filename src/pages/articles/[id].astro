@@ -3,17 +3,19 @@ import { render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
 import ContentLayout from "@/layouts/content.astro";
 import ArticleHeader from "./_components/article-header.astro";
-
 import { articlesHandler } from "@/lib/handlers/articles";
+
+// 1. Essencial para que o Astro gere as páginas das notícias durante o build no modo SSR
+export const prerender = true;
 
 export const getStaticPaths = async () => {
   const articles = articlesHandler.allArticles();
-
   return articles.map((article) => ({
     params: { id: article.id },
     props: { article },
   }));
 };
+
 const { article } = Astro.props;
 
 const { Content, remarkPluginFrontmatter } = await render(article);

@@ -4,10 +4,11 @@ import { SITE } from "@/lib/config";
 import { articlesHandler } from "@/lib/handlers/articles";
 import { categoriesHandler } from "@/lib/handlers/categories";
 import ListLayout from "@/layouts/list.astro";
-
 import Pagination from "@/components/shared/pagination.astro";
 import WideCard from "@/components/cards/wideCard.astro";
 import { getEntry } from "astro:content";
+
+export const prerender = true;
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allCategories = categoriesHandler.allCategories();
@@ -25,12 +26,11 @@ export const getStaticPaths = (async ({ paginate }) => {
   });
 }) satisfies GetStaticPaths;
 
-const { page } = Astro.props;
-const { postsLength } = Astro.props;
-const params = Astro.params;
+const { page, postsLength } = Astro.props;
+const { category } = Astro.params;
 const articles = page.data;
-const pathname = new URL(Astro.request.url).pathname.split("/");
-const basePath = `${pathname[1]}/${pathname[2]}`;
+
+const basePath = `/categories/${category}`;
 
 const entry = await getEntry("views", "categories");
 
@@ -39,7 +39,7 @@ if (!entry) {
 }
 ---
 
-<ListLayout header={params.category} entry={entry}>
+<ListLayout header={category} entry={entry}>
   <ul class="flex flex-col gap-2 flex-1">
     {
       articles.map((article) => (
@@ -50,17 +50,18 @@ if (!entry) {
       ))
     }
   </ul>
+
   {
-    postsLength > SITE.postsPerPage ? (
+    postsLength > SITE.postsPerPage && (
       <Pagination
         length={page.lastPage}
         currentUrl={page.url.current}
         currentPage={page.currentPage}
-        baseUrl={`/${basePath}`}
+        baseUrl={basePath}
         prevUrl={page.url.prev}
         nextUrl={page.url.next}
-        lastUrl={`/${basePath}/${page.lastPage}`}
+        lastUrl={`${basePath}/${page.lastPage}`}
       />
-    ) : null
+    )
   }
 </ListLayout>

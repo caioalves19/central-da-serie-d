@@ -3,6 +3,9 @@ import BaseLayout from "@/layouts/base.astro";
 import "@pagefind/default-ui/css/ui.css";
 import { getEntry } from "astro:content";
 
+// 1. Essencial para que a página de busca seja gerada no build e o Pagefind funcione
+export const prerender = true;
+
 const entry = await getEntry("views", "search");
 
 if (!entry) {
@@ -18,13 +21,13 @@ if (!entry) {
 
     <script>
       const initializePagefind = () => {
-        // Remove any existing Pagefind UI elements to avoid duplicates
+        // Remove elementos existentes para evitar duplicados em navegações via Astro
         const existingSearchUI = document.querySelector(".pagefind-ui");
         if (existingSearchUI) {
           existingSearchUI.remove();
         }
 
-        // Import dynamically to ensure proper re-initialization
+        // Importação dinâmica para garantir reinicialização correta
         // @ts-expect-error
         import("@pagefind/default-ui")
           .then(({ PagefindUI }) => {
@@ -39,12 +42,13 @@ if (!entry) {
             const input =
               el?.querySelector<HTMLInputElement>(`input[type="text"]`);
             const clearButton = el?.querySelector(".pagefind-ui__search-clear");
+
             const url = new URL(window.location.href);
             const params = new URLSearchParams(url.search);
             const query = params.get("q");
 
             if (clearButton) {
-              clearButton.textContent = "× Clear";
+              clearButton.textContent = "× Limpar";
             }
             if (query && input) {
               input.value = query;
@@ -69,6 +73,7 @@ if (!entry) {
           .catch(console.error);
       };
 
+      // Reinicia a busca sempre que uma nova página é carregada no Astro
       document.addEventListener("astro:page-load", () => {
         initializePagefind();
       });

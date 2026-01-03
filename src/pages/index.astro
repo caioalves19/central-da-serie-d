@@ -1,9 +1,12 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
 import { getEntry } from "astro:content";
-import Headlines from "@/pages/_home/headlines.astro";
-import LatestNews from "@/pages/_home/latestNews.astro";
+
+import Headlines from "./_home/headlines.astro";
 import RegionBlock from "./_home/regionBlock.astro";
+
+// 1. Essencial para que a Home carregue instantaneamente na Vercel
+export const prerender = true;
 
 const entry = await getEntry("views", "home");
 
@@ -14,9 +17,12 @@ if (!entry) {
 
 <BaseLayout entry={entry}>
   <Headlines />
-  <RegionBlock title="Região Norte" slug="norte" />
-  <RegionBlock title="Região Nordeste" slug="nordeste" />
-  <RegionBlock title="Região Centro-Oeste" slug="centro-oeste" />
-  <RegionBlock title="Região Sudeste" slug="sudeste" />
-  <RegionBlock title="Região Sul" slug="sul" />
+
+  <div class="space-y-8 mt-8">
+    <RegionBlock title="Região Norte" slug="norte" />
+    <RegionBlock title="Região Nordeste" slug="nordeste" />
+    <RegionBlock title="Região Centro-Oeste" slug="centro-oeste" />
+    <RegionBlock title="Região Sudeste" slug="sudeste" />
+    <RegionBlock title="Região Sul" slug="sul" />
+  </div>
 </BaseLayout>

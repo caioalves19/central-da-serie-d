@@ -1,9 +1,11 @@
 ---
 import { authorsHandler } from "@/lib/handlers/authors";
 
+// 1. Essencial para que o redirecionamento funcione corretamente no modo SSR da Vercel
+export const prerender = true;
+
 export const getStaticPaths = async () => {
   const authors = authorsHandler.allAuthors();
-
   return authors.map((author) => ({
     params: { id: author.id },
     props: { author },
@@ -13,4 +15,4 @@ export const getStaticPaths = async () => {
 const { author } = Astro.props;
 ---
 
-<meta http-equiv="refresh" content=`0;url=/authors/${author.id}/1` />
+<meta http-equiv="refresh" content={`0;url=/authors/${author.id}/1`} />
