@@ -1,0 +1,32 @@
+---
+// src/pages/_home/regionBlock.astro
+import NewsCard from "@/components/cards/newsCard.astro";
+import HeaderSection from "./headerSection.astro";
+import { articlesHandler } from "@/lib/handlers/articles";
+
+interface Props {
+  title: string;
+  slug: string;
+}
+
+const { title, slug } = Astro.props;
+const articles = articlesHandler.byCategory(slug);
+---
+
+{articles.length > 0 && (
+  <section class="container pt-12 pb-0 space-y-4">
+    <div class="divider w-full h-1"></div>
+    <HeaderSection
+      title={title}
+      link_title="Ver todos"
+      link_url={`/categories/${slug}`}
+    />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-6">
+      {
+        articles
+          .slice(0, 3) // Mostra os 3 últimos de cada região na home
+          .map((article, index) => <NewsCard article={article} index={index} />)
+      }
+    </div>
+  </section>
+)}

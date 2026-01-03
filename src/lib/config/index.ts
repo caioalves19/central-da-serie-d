@@ -1,99 +1,81 @@
 import type { Link } from "../types";
 
 export const SITE = {
-  title: "Astro News",
-  description: "A news website built with Astro",
-  author: "Mohammad Rahmani",
-  url: "https://astro-news-six.vercel.app",
-  github: "https://github.com/Mrahmani71/astro-news",
-  locale: "en-US",
+  title: "Central da Série D",
+  description:
+    "Tudo sobre a Série D 2026: notícias dos 96 clubes, mercado da bola, resultados e o guia completo das 6 vagas de acesso.",
+  author: "Central da Série D",
+  url: "https://www.centraldaseried.com.br",
+  locale: "pt-BR",
   dir: "ltr",
   charset: "UTF-8",
   basePath: "/",
-  postsPerPage: 4,
+  postsPerPage: 6,
 };
 
 export const NAVIGATION_LINKS: Link[] = [
   {
-    href: "/categories/technology",
-    text: "Technology",
+    href: "/categories/norte",
+    text: "Norte",
   },
   {
-    href: "/categories/programming",
-    text: "Programming",
+    href: "/categories/nordeste",
+    text: "Nordeste",
   },
   {
-    href: "/categories/lifestyle",
-    text: "Lifestyle",
+    href: "/categories/centro-oeste",
+    text: "Centro-Oeste",
   },
   {
-    href: "/categories/productivity",
-    text: "Productivity",
+    href: "/categories/sudeste",
+    text: "Sudeste",
   },
   {
-    href: "/categories/health",
-    text: "Health",
-  },
-  {
-    href: "/categories/finance",
-    text: "Finance",
+    href: "/categories/sul",
+    text: "Sul",
   },
 ];
 
 export const OTHER_LINKS: Link[] = [
   {
-    href: "/about",
-    text: "About us",
+    href: "/sobre",
+    text: "Sobre",
   },
   {
-    href: "/authors",
-    text: "Authors",
+    href: "/contato",
+    text: "Contato",
   },
   {
-    href: "/contact",
-    text: "Contact",
+    href: "/privacidade",
+    text: "Privacidade",
   },
   {
-    href: "/privacy",
-    text: "Privacy",
+    href: "/termos-de-uso",
+    text: "Termos de Uso",
   },
   {
-    href: "/terms",
-    text: "Terms",
+    href: "/politica-cookies",
+    text: "Política de Cookies",
   },
   {
-    href: "/cookie-policy",
-    text: "Cookie Policy",
-  },
-  {
-    href: "https://astro-news-six.vercel.app/rss.xml",
+    href: "https://www.centraldaseried.com.br/rss.xml",
     text: "RSS",
   },
   {
-    href: "https://astro-news-six.vercel.app/sitemap-index.xml",
+    href: "https://www.centraldaseried.com.br/sitemap-index.xml",
     text: "Sitemap",
   },
 ];
 
 export const SOCIAL_LINKS: Link[] = [
   {
-    href: "https://github.com",
-    text: "GitHub",
-    icon: "github",
+    href: "https://www.instagram.com/centralseried/",
+    text: "Instagram",
+    icon: "instagram",
   },
   {
-    href: "httpe://www.t.me",
-    text: "Telegram",
-    icon: "telegram",
-  },
-  {
-    href: "https://twitter.com",
-    text: "Twitter",
-    icon: "newTwitter",
-  },
-  {
-    href: "https://www.facebook.com",
-    text: "Facebook",
-    icon: "facebook",
+    href: "https://www.tiktok.com/@centralseried",
+    text: "TikTok",
+    icon: "tiktok",
   },
 ];

@@ -1,7 +1,9 @@
 ---
 import Clipboard from "@/assets/svgs/clipboard.astro";
 import Facebook from "@/assets/svgs/facebook.astro";
+import Instagram from "@/assets/svgs/instagram.astro";
 import Linkedin from "@/assets/svgs/linkedin.astro";
+import Tiktok from "@/assets/svgs/tiktok.astro";
 import Twitter from "@/assets/svgs/twitter.astro";
 import Whatsapp from "@/assets/svgs/whatsapp.astro";
 
@@ -11,7 +13,14 @@ type Props = {
   dataAwSocialShare: string;
   dataAwUrl: string | URL;
   dataAwText: string;
-  icon: "clipboard" | "facebook" | "linkedin" | "twitter" | "whatsapp";
+  icon:
+    | "clipboard"
+    | "facebook"
+    | "linkedin"
+    | "twitter"
+    | "whatsapp"
+    | "instagram"
+    | "tiktok";
 };
 
 const { className, title, dataAwSocialShare, dataAwUrl, dataAwText, icon } =
@@ -24,6 +33,8 @@ const iconMap = {
   linkedin: Linkedin,
   twitter: Twitter,
   whatsapp: Whatsapp,
+  instagram: Instagram,
+  tiktok: Tiktok,
 } as const;
 
 const Icon = iconMap[icon];

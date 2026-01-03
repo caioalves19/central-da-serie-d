@@ -13,6 +13,12 @@ const articlesCollection = (
 export const articlesHandler = {
   allArticles: () => articlesCollection,
 
+  byCategory: (categorySlug: string) => {
+    return articlesCollection.filter(
+      (article) => article.data.category.id === categorySlug
+    );
+  },
+
   mainHeadline: () => {
     const article = articlesCollection.filter(
       (article) => article.data.isMainHeadline === true
