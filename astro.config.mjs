@@ -16,7 +16,6 @@ export default defineConfig({
   site: SITE.url,
   base: SITE.basePath,
 
-  // Mantemos como "server" para o Keystatic funcionar na Vercel
   output: "server",
 
   markdown: {
@@ -31,7 +30,6 @@ export default defineConfig({
   integrations,
 
   vite: {
-    // O comentário abaixo ignora o erro de conflito de tipos do Vite
     // @ts-ignore
     plugins: [tailwindcss()],
   },
